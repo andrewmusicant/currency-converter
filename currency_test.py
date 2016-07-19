@@ -45,5 +45,5 @@ def test_subtracting_different_currency_codes_raises_error():
 
 def test_multipling_currencys_with_currency_codes_equal():
     curr1 = Currency(6, 'USD')
-    curr2 = Currency(5, 'USD')
+    curr2 = 5
     assert curr1 * curr2 == Currency(30, 'USD')

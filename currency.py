@@ -26,41 +26,44 @@ class Currency:
             raise DifferentCurrencyCodeError
 
     def __mul__(self,second_curr):
-        if self.curr_code == second_curr.curr_code:
-            return Currency(self.amount * second_curr.amount, self.curr_code)
-        else:
-            raise DifferentCurrencyCodeError
+            return Currency(self.amount * second_curr, self.curr_code)
+
 
 class DifferentCurrencyCodeError(Exception):
     pass
 
+def curr_code_checker(curr_code):
+    if curr_code == '$' or curr_code == 'USD' or curr_code == 'U.S. Dollar':
+        curr_code = 'USD'
+    elif curr_code == '€' or curr_code == 'EUR' or curr_code == 'Euro':
+        curr_code = 'EUR'
+    elif curr_code == '£' or curr_code == 'GBP' or curr_code == 'British Pound':
+        curr_code = 'GBP'
+    elif curr_code == '¥' or curr_code == 'JPY' or curr_code == 'Yen':
+        curr_code = 'JPY'
+    else:
+        print("Please enter a valid currency")
 
-# def main():
-#     print("USD = $, or U.S. Dollar; EUR = €, or Euro")
-#     print("GBP = £, or British Pound; JPY = ¥, or Yen")
-#     EnteredValues={}
-#     converter()
-#     while True:
-#         amount = input("Please enter the amount of currency: ")
-#         curr_code = input("Please enter the country code you wish to use. See above for help: ")
-#         str(curr_code)
-#         curr_code_checker(curr_code)
-#         EnteredValues[curr_code]= amount
-#         print(EnteredValues)
-#
-# if __name__=='__main__':
-#     main()
-# def curr_code_checker(curr_code):
-#     if curr_code == '$' or curr_code == 'USD' or curr_code == 'U.S. Dollar':
-#         curr_code = 'USD'
-#     elif curr_code == '€' or curr_code == 'EUR' or curr_code == 'Euro':
-#         curr_code = 'EUR'
-#     elif curr_code == '£' or curr_code == 'GBP' or curr_code == 'British Pound':
-#         curr_code = 'GBP'
-#     elif curr_code == '¥' or curr_code == 'JPY' or curr_code == 'Yen':
-#         curr_code = 'JPY'
-#     else:
-#         print("Please enter a valid currency")
+
+def main():
+    print("USD = $, or U.S. Dollar; EUR = €, or Euro")
+    print("GBP = £, or British Pound; JPY = ¥, or Yen")
+    EnteredValues={}
+    while True:
+        amount = input("Please enter the amount of currency: ")
+        curr_code = input("Please enter the country code you wish to use. See above for help: ")
+        if amount.isdigit() == True:
+            pass
+        else:
+            print("Please enter a numeric currency amount")
+        str(curr_code)
+        curr_code_checker(curr_code)
+        EnteredValues[curr_code]= amount
+        print(EnteredValues)
+
+if __name__=='__main__':
+    main()
+
 #
 #
 #
