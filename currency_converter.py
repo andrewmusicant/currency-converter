@@ -1,18 +1,18 @@
 from currency import *
 
 class CurrencyConverter:
-    def converter():
-        dict={'USD': 1.0, 'EUR': 0.74, 'GBP': 0.90, 'JPY': 120.0}
+    def __init__(self, rates):
+        self.rates = rates
 
-        begin_curr_code = input("Please enter your starting Currency Code: ")
-        curr_amount = input("Please enter the amount of money you wish to convert: ")
-        end_curr_code = input("Pleasr enter the Currency you wish to convert to: ")
+    def converter(self, from_currency , to_currency):
+        if to_currency not in self.rates:
+            raise UnknownCurrencyCodeError
+        else:
+            x = Currency(from_currency.amount * (self.rates[to_currency] /self.rates[from_currency.curr_code]), to_currency)
+            return x
 
-        value1 = dict[begin_curr_code]
-        dict[begin_curr_code]= curr_amount
-        value1=float(curr_amount)
-        value2 = dict[end_curr_code]
-        print("You have gone from", begin_curr_code, "to", end_curr_code, "your total is",value1 * value2)
+class UnknownCurrencyCodeError(Exception):
+        pass
 
 
-CurrencyConverter.converter()
+#CurrencyConverter.converter()
